@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,6 +27,12 @@ public class QueryServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         for(int i = 0; i < count; i++){
             writer.println(user);
+        }
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") != null){
+            resp.getWriter().println("Zalogowany user: " + session.getAttribute("user"));
+        } else{
+            resp.getWriter().println("Brak zalogowano użytkownika!");
         }
     }
 }

@@ -3,9 +3,7 @@ package pl.wsb.spring.config;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.wsb.spring.servlet.CookieServlet;
-import pl.wsb.spring.servlet.HomeServlet;
-import pl.wsb.spring.servlet.QueryServlet;
+import pl.wsb.spring.servlet.*;
 
 @Configuration
 public class ServletConfig {
@@ -34,4 +32,23 @@ public class ServletConfig {
         register.setLoadOnStartup(1);
         return register;
     }
+
+    @Bean
+    ServletRegistrationBean<AddBlogArticleServlet> getAddArticleServlet(){
+        ServletRegistrationBean<AddBlogArticleServlet> register = new ServletRegistrationBean<>();
+        register.addUrlMappings("/blog/add");
+        register.setServlet(new AddBlogArticleServlet());
+        register.setLoadOnStartup(1);
+        return register;
+    }
+
+    @Bean
+    ServletRegistrationBean<BrowseArticleServlet> getBrowseArticleServlet(){
+        ServletRegistrationBean<BrowseArticleServlet> register = new ServletRegistrationBean<>();
+        register.addUrlMappings("/blog/browse");
+        register.setServlet(new BrowseArticleServlet());
+        register.setLoadOnStartup(1);
+        return register;
+    }
+
 }
