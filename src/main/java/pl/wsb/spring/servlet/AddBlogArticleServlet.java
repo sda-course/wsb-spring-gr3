@@ -29,5 +29,6 @@ public class AddBlogArticleServlet extends HttpServlet {
                 .build();
         storage.add(article);
         System.out.println(storage.findAll());
+        resp.sendRedirect("/blog/browse");
     }
 }
